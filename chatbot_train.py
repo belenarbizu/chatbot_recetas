@@ -2,7 +2,7 @@ import json
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
-from sklearn.svm import LinearSVC as SVC
+from sklearn.svm import SVC
 from sklearn.metrics import classification_report, confusion_matrix
 import pickle
 
@@ -49,7 +49,7 @@ def split_data(X, y):
 
 
 def create_model(X_train, y_train, X_test, y_test):
-    model = SVC()
+    model = SVC(kernel='linear', probability=True)
     model.fit(X_train, y_train)
     accuracy = model.score(X_test, y_test)
     print(f"Model created and evaluated successfully. Accuracy: {accuracy * 100:.2f}%")

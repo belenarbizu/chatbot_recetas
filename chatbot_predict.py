@@ -24,11 +24,13 @@ def predict(model, tfidf_vectorizer, encoder, text):
         return None
     X_test = tfidf_vectorizer.transform([text])
     y_pred = model.predict(X_test)[0]
+    probabilities = model.predict_proba(X_test)[0]
+    max_probability = max(probabilities)
     tag = encoder.inverse_transform([y_pred])[0]
     for intent in data['intents']:
         if intent['tag'] == tag:
-            return intent['responses']
-    return tag
+            return intent['responses'], max_probability
+    return tag, max_probability
 
 
 def main():

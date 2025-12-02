@@ -6,7 +6,7 @@
                     "buenos días", "buenas tardes", "buenas noches", "qué hay", "qué pasa", "saludos", "hey",
                     "ey", "hi", "hello", "holi", "holis", "qué tal estás", "cómo estás", "hola buenas",
                     "hola, buenas", "que tal como estamos", "qué tal, cómo estás", "qué tal, cómo va todo"],
-      "responses": ["¡Hola! ¿En qué puedo ayudarte sobre vivienda en Málaga?"]
+      "responses": ["¡Hola! ¿En qué puedo ayudarte sobre trámites municipales en Málaga?"]
     },
     {
       "tag": "despedida",
@@ -26,58 +26,18 @@
       "responses": ["¡De nada! ¿Quieres consultar algo más?"]
     },
     {
-      "tag": "ayudas_alquiler",
-      "patterns": [
-        "ayudas de alquiler en málaga",
-        "necesito ayuda con el alquiler",
-        "subvención alquiler",
-        "qué ayudas hay para pagar el alquiler",
-        "me puedes informar sobre ayudas al alquiler",
-        "quiero solicitar ayuda para el alquiler",
-        "cómo puedo obtener una ayuda para el alquiler",
-        "dónde puedo pedir una ayuda al alquiler",
-        "requisitos para ayudas al alquiler",
-        "plazos para ayudas al alquiler",
-        "cuales son los requisitos para ayudas al alquiler",
-        "dónde puedo informarme sobre ayudas al alquiler",
-        "quiero informarme sobre ayudas al alquiler"
-      ],
-      "responses": [
-        "El Ayuntamiento de Málaga ofrece diferentes ayudas al alquiler. Puedes consultar requisitos y plazos en la Oficina Municipal de Vivienda."
-      ]
+      "tag": "empadronamiento",
+      "patterns": ["¿Cómo puedo empadronarme en Málaga?", "empadronamiento en Málaga", "como empadronarme en malaga",
+                    "quiero empadronarme", "empadronamiento", "como empadronarme", "dónde puedo empadronarme",
+                    "dónde se hace el empadronamiento", "qué necesito para empadronarme", "requisitos para empadronamiento",
+                    "documentos para empadronamiento", "tramitar empadronamiento", "solicitar empadronamiento"],
+      "responses": ["Para empadronarte en Málaga, debes pedir cita previa, entregar la hoja padronal, presentar el DNI o similar y documentación acreditativa del domicilio como una factura de un suministro, escritura o recibo del IBI."]
     },
     {
-      "tag": "vivienda_publica",
-      "patterns": [
-        "cómo solicitar vivienda pública",
-        "bolsa de vivienda málaga",
-        "inscribirme en vivienda protegida",
-        "VPO requisitos",
-        "cuales son los requisitos para vivienda pública",
-        "dónde puedo solicitar vivienda pública",
-        "quiero solicitar vivienda pública",
-        "cómo puedo inscribirme en la bolsa de vivienda",
-        "que necesito para solicitar vivienda pública",
-        "qué hace falta para solicitar vivienda pública"
-      ],
-      "responses": [
-        "Para solicitar vivienda pública en Málaga debes inscribirte en el Registro Municipal de Demandantes. Te explico los requisitos si quieres."
-      ]
-    },
-    {
-      "tag": "fuera_de_dominio",
-      "patterns": ["qué tiempo hace", "quién ganará la liga", "cuál es el mejor móvil", "cómo cocinar paella",
-                    "qué es la inteligencia artificial", "dónde está la torre eiffel", "quién es el presidente de estados unidos",
-                    "cuál es la capital de francia", "qué hora es", "cómo llegar a la estación de tren",
-                    "qué películas están de moda", "quién ganó el último mundial", "cómo hacer una tarta de chocolate",
-                    "qué es el cambio climático", "dónde puedo comprar un ordenador portátil",
-                    "quién escribió cien años de soledad", "cuál es la moneda de japón",
-                    "qué es la fotosíntesis", "dónde está el monte everest", "quién inventó la bombilla",
-                    "cómo aprender a programar", "qué es el blockchain", "dónde está la gran muralla china",
-                    "quién es el autor de don quijote", "cuál es la población de alemania", "qué es la realidad virtual",
-                    "dónde puedo encontrar recetas de cocina", "quién descubrió américa", "cuál es el río más largo del mundo",
-                    "qué es la energía renovable", "dónde está el desierto del sahara", "quién pintó la mona lisa"],
-      "responses": ["Puedo ayudarte solo con temas de vivienda del Ayuntamiento de Málaga."]
+      "tag": "fallback",
+      "patterns": [],
+      "responses": ["No estoy seguro de entenderte. ¿Podrías reformular tu pregunta sobre trámites municipales en Málaga?",
+                    "Solo puedo ayudarte con temas relacionados con los trámites municipales en Málaga. ¿En qué puedo ayudarte?"]
     }
   ]
 }

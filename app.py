@@ -3,6 +3,8 @@ import pickle
 from chatbot_predict import predict
 import json
 
+THRESHOLD = 0.45
+
 def main():
     try:
         with open('model.pkl', 'rb') as file:
@@ -15,7 +17,11 @@ def main():
         return
 
     def chatbot_response(user_input, history):
-        tag = predict(model, tfidf_vectorizer, encoder, user_input)
+        tag, probability = predict(model, tfidf_vectorizer, encoder, user_input)
+
+        if probability < THRESHOLD:
+            return ["No estoy seguro de entenderte. ¿Podrías reformular tu pregunta sobre vivienda en Málaga?"]
+
         return tag
 
     gr.ChatInterface(chatbot_response, title="Chatbot Intent Predictor").launch()
