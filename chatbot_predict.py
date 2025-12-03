@@ -1,6 +1,7 @@
 import pickle
 import json
 import random
+from match_recipe import get_all_ingredients, get_ingredients_from_text, score_recipe_match, find_best_recipes
 
 def load_model():
     try:
@@ -43,14 +44,21 @@ def predict(model, tfidf_vectorizer, encoder, text):
     recetas = open_recetas_file()
     if not recetas:
         exit(1)
+
     X_test = tfidf_vectorizer.transform([text])
     y_pred = model.predict(X_test)[0]
     probabilities = model.predict_proba(X_test)[0]
     max_probability = max(probabilities)
     tag = encoder.inverse_transform([y_pred])[0]
+
     for intent in data['intents']:
         if tag == "buscar_receta" or tag == "dieta":
-            receta = random.choice(recetas)
+            ingredients = get_all_ingredients(recetas)
+            text_ingredients = get_ingredients_from_text(text, ingredients)
+            best_recetas = find_best_recipes(recetas, text_ingredients)
+            if not best_recetas:
+                return "No se encontraron recetas que coincidan con los ingredientes proporcionados.", None, max_probability
+            receta = random.choice(best_recetas)
             return receta['nombre'], receta["instrucciones"], max_probability
         if intent['tag'] == tag:
             if isinstance(intent['responses'], list):

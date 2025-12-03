@@ -59,7 +59,6 @@ def create_model(X_train, y_train, X_test, y_test):
 def save_model(model, tfidf_vectorizer, encoder):
     with open('model.pkl', 'wb') as file:
         pickle.dump({'model': model, 'vectorizer': tfidf_vectorizer, 'encoder': encoder}, file)
-    
 
 
 def main():
