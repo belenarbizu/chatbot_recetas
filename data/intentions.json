@@ -1,0 +1,83 @@
+{
+  "intents": [
+    {
+      "tag": "saludo",
+      "patterns": ["hola", "buenos días", "qué tal", "hola qué tal", "holaa", "holaaa", "hola!", "buenas",
+                    "buenos días", "buenas tardes", "buenas noches", "qué hay", "qué pasa", "saludos", "hey",
+                    "ey", "hi", "hello", "holi", "holis", "qué tal estás", "cómo estás", "hola buenas",
+                    "hola, buenas", "que tal como estamos", "qué tal, cómo estás", "qué tal, cómo va todo"],
+      "responses": ["¡Hola! ¿En qué puedo ayudarte sobre recetas de comida?",
+                    "¡Buenas! Dime que ingredientes tienes y te sugiero una receta."]
+    },
+    {
+      "tag": "despedida",
+      "patterns": ["adiós", "hasta luego", "nos vemos", "chao", "hasta pronto", "me voy", "adios",
+                    "chaooo", "nos vemos luego", "nos vemos pronto", "hasta la próxima", "hasta otra",
+                    "me despido", "cuídate", "que tengas un buen día", "vale, gracias, adiós", "ok, me voy, adiós",
+                    "ok, me voy, hasta luego", "gracias por la ayuda, chao", "gracias por la ayuda, hasta luego",
+                    "gracias por la ayuda, adiós", "thank you, bye", "thanks, bye", "adioos"],
+      "responses": ["¡Hasta luego! Si necesitas algo más, aquí estaré.",
+                    "¡Hasta luego! Que disfrutes cocinando."]
+    },
+    {
+      "tag": "agradecimiento",
+      "patterns": ["gracias", "muchas gracias", "te lo agradezco", "grax", "mil gracias",
+                    "gracias por tu ayuda", "gracias por la info", "thank you", "thanks",
+                    "muchas gracias por tu ayuda", "muchas gracias por la info", "te lo agradezco mucho",
+                    "gracias por todo", "gracias por la información", "gracias por la ayuda"],
+      "responses": ["¡De nada! ¿Quieres consultar algo más?"]
+    },
+    {
+      "tag": "ayuda",
+      "patterns": ["necesito ayuda", "puedes ayudarme", "me puedes ayudar", "ayúdame",
+                    "podrías ayudarme", "me podrías ayudar", "quiero ayuda", "dame ayuda",
+                    "necesito tu ayuda", "puedes darme ayuda", "me puedes dar ayuda",
+                    "podrías darme ayuda", "me podrías dar ayuda", "quiero tu ayuda",
+                    "dame tu ayuda", "que puedes hacer?", "qué puedes hacer por mí?", "qué puedes hacer por mi?",
+                    "qué puedes hacer", "qué puedes hacer por mí", "qué puedes hacer por mi", "cómo puedes ayudarme",
+                    "cómo puedes ayudar", "cómo me puedes ayudar", "cómo me puedes ayudar?", "como funcionas?",
+                    "cómo funcionas", "cómo es tu funcionamiento", "cómo es tu funcionamiento?",
+                    "que sabes hacer?", "qué sabes hacer?", "que sabes hacer", "qué sabes hacer"],
+      "responses": ["Puedo ayudarte con recetas de comida. Dime que ingredientes tienes o que dieta sigues.",
+                    "Estoy aquí para ayudarte con recetas de comida. ¿Qué te gustaría saber?"]
+    },
+    {
+      "tag": "buscar_receta",
+      "patterns": ["busca una receta con", "encuentra una receta con", "dame una receta con",
+                    "sugiere una receta con", "qué puedo cocinar con", "qué puedo hacer con",
+                    "qué receta puedo hacer con", "qué receta puedo cocinar con",
+                    "tengo estos ingredientes", "tengo estos ingredientes:", "qué puedo cocinar",
+                    "qué puedo hacer", "dame una receta", "sugiere una receta", "encuentra una receta",
+                    "busca una receta", "necesito una receta", "quiero una receta",
+                    "puedes darme una receta", "me puedes dar una receta",
+                    "podrías darme una receta", "me podrías dar una receta", "tengo", "tengo:",
+                    "qué puedo preparar con", "qué receta puedo preparar con",
+                    "sugiere una receta para", "dame una receta para", "encuentra una receta para",
+                    "busca una receta para", "necesito una receta para", "quiero una receta para",
+                    "puedes darme una receta para", "me puedes dar una receta para",
+                    "podrías darme una receta para", "me podrías dar una receta para", "receta facil",
+                    "receta rápida", "receta rapida", "receta sencilla", "receta simple",
+                    "dame ideas para cocinar", "dame ideas para cenar", "dame ideas para comer",
+                    "enseñame a hacer", "enséñame a hacer", "algo rápido para cocinar", "algo rapido para cocinar",
+                    "algo sencillo para cocinar", "algo simple para cocinar", "algo rápido para comer",
+                    "algo rapido para comer", "algo sencillo para comer", "algo simple para comer"],
+        "responses": []
+    },
+    {
+      "tag": "dietas",
+      "patterns": ["recetas veganas", "recetas vegetarianas", "recetas sin gluten", "recetas sin lactosa",
+                    "tienes recetas veganas?", "tienes recetas vegetarianas?", "tienes recetas sin gluten?",
+                    "tienes recetas sin lactosa?", "tienes recetas paleo?",
+                    "puedes darme recetas veganas?", "puedes darme recetas vegetarianas?",
+                    "puedes darme recetas sin gluten?", "puedes darme recetas sin lactosa?",
+                    "sin lactosa", "sin gluten", "vegano", "vegetariano"],
+      "responses": []
+    },
+    {
+      "tag": "fallback",
+      "patterns": [],
+      "responses": ["No estoy seguro de entenderte. ¿Podrías reformular tu pregunta sobre recetas de comida?",
+                    "Solo puedo ayudarte con temas relacionados con recetas de comida. ¿En qué puedo ayudarte?"]
+    }
+  ]
+}

@@ -8,9 +8,9 @@ import pickle
 
 def open_file():
     try:
-        with open('intentions.json', 'r', encoding='utf-8') as file:
+        with open('data/intentions.json', 'r', encoding='utf-8') as file:
             data = json.load(file)
-            print("JSON file loaded successfully.")
+            print("intentions JSON file loaded successfully.")
             return data
     except FileNotFoundError:
         print("The file intentions.json was not found.")

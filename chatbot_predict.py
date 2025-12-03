@@ -1,5 +1,6 @@
 import pickle
 import json
+import random
 
 def load_model():
     try:
@@ -15,22 +16,47 @@ def load_model():
         return None, None, 
 
 
-def predict(model, tfidf_vectorizer, encoder, text):
+def open_intentions_file():
     try:
-        with open('intentions.json', 'r', encoding='utf-8') as file:
+        with open('data/intentions.json', 'r', encoding='utf-8') as file:
             data = json.load(file)
+            return data
     except FileNotFoundError:
         print("The file intentions.json was not found.")
         return None
+
+
+def open_recetas_file():
+    try:
+        with open('data/recetas.json', 'r', encoding='utf-8') as file:
+            data = json.load(file)
+            return data
+    except FileNotFoundError:
+        print("The file recetas.json was not found.")
+        return None
+
+
+def predict(model, tfidf_vectorizer, encoder, text):
+    data = open_intentions_file()
+    if not data:
+        exit(1)
+    recetas = open_recetas_file()
+    if not recetas:
+        exit(1)
     X_test = tfidf_vectorizer.transform([text])
     y_pred = model.predict(X_test)[0]
     probabilities = model.predict_proba(X_test)[0]
     max_probability = max(probabilities)
     tag = encoder.inverse_transform([y_pred])[0]
     for intent in data['intents']:
+        if tag == "buscar_receta" or tag == "dieta":
+            receta = random.choice(recetas)
+            return receta['nombre'], receta["instrucciones"], max_probability
         if intent['tag'] == tag:
-            return intent['responses'], max_probability
-    return tag, max_probability
+            if isinstance(intent['responses'], list):
+                return random.choice(intent['responses']), None, max_probability
+            return intent['responses'], None, max_probability
+    return None, None, 0.0
 
 
 def main():
@@ -38,9 +64,9 @@ def main():
     if not model:
         exit(1)
     user_input = input("Enter your message: ")
-    tag = predict(model, tfidf_vectorizer, encoder, user_input)
-    if tag:
-        print(f"The predicted intent tag is: {tag}")
+    response, _, _ = predict(model, tfidf_vectorizer, encoder, user_input)
+    if response:
+        print(f"The predicted response is: {response}")
 
 
 if __name__ == "__main__":
