@@ -1,3 +1,20 @@
+DIETA = {
+    "vegana": "vegano",
+    "vegano": "vegano",
+    "vegetariana": "vegetariano",
+    "vegetariano": "vegetariano",
+    "sin gluten": "sin_gluten",
+    "no gluten": "sin_gluten",
+    "no tolero el gluten": "sin_gluten",
+    "no como gluten": "sin_gluten",
+    "no como carne": "vegetariano",
+    "no como pescado": "vegetariano",
+    "no como marisco": "vegetariano",
+    "sin carne": "vegetariano",
+    "sin pescado": "vegetariano",
+    "sin marisco": "vegetariano"
+}
+
 def get_all_ingredients(recetas):
     ingredients_set = set()
     for receta in recetas:
@@ -15,7 +32,7 @@ def get_ingredients_from_text(text, ingredients):
     return list(found_ingredients)
 
 
-def score_recipe_match(receta, input_ingredients):
+def score_recipe_match(receta, input_ingredients, dieta=None):
     score = 0
 
     receta_ingredients = receta.get('ingredientes', [])
@@ -28,14 +45,19 @@ def score_recipe_match(receta, input_ingredients):
 
     #missing ingredients??
 
+    if dieta:
+        dieta_type = receta.get('dieta', None)
+        if dieta in dieta_type:
+            score += 10
+
     return score
 
 
-def find_best_recipes(recetas, input_ingredients):
+def find_best_recipes(recetas, input_ingredients, dieta=None):
     scores = []
 
     for receta in recetas:
-        score = score_recipe_match(receta, input_ingredients)
+        score = score_recipe_match(receta, input_ingredients, dieta)
         if score > 0:
             scores.append((receta, score))
     

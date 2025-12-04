@@ -1,7 +1,8 @@
 import pickle
 import json
 import random
-from match_recipe import get_all_ingredients, get_ingredients_from_text, score_recipe_match, find_best_recipes
+from match_recipe import get_all_ingredients, get_ingredients_from_text, score_recipe_match, find_best_recipes, DIETA
+
 
 def load_model():
     try:
@@ -52,16 +53,31 @@ def predict(model, tfidf_vectorizer, encoder, text):
     tag = encoder.inverse_transform([y_pred])[0]
 
     for intent in data['intents']:
-        if tag == "buscar_receta" or tag == "dieta":
+        if tag == "buscar_receta":
             ingredients = get_all_ingredients(recetas)
             text_ingredients = get_ingredients_from_text(text, ingredients)
-            best_recetas = find_best_recipes(recetas, text_ingredients)
-            if not best_recetas:
+            best_receipts = find_best_recipes(recetas, text_ingredients)
+            if not best_receipts:
                 return "No se encontraron recetas que coincidan con los ingredientes proporcionados.", None, max_probability
-            receta = random.choice(best_recetas)
+            receta = random.choice(best_receipts)
             return receta['nombre'], receta["instrucciones"], max_probability
+        if tag == "dietas":
+            dieta = None
+            for word in DIETA.keys():
+                if word in text.lower():
+                    dieta = DIETA[word]
+                    break
+            if dieta:
+                ingredients = get_all_ingredients(recetas)
+                text_ingredients = get_ingredients_from_text(text, ingredients)
+                best_receipts = find_best_recipes(recetas, text_ingredients, dieta)
+                if not best_receipts:
+                    return f"No se encontraron recetas para la dieta {dieta}.", None, max_probability
+                receta = random.choice(best_receipts)
+                return receta['nombre'], receta["instrucciones"], max_probability
+            return "¿Qué tipo de dieta sigues? (vegana, vegetariana, sin gluten)", None, max_probability
         if intent['tag'] == tag:
-            if isinstance(intent['responses'], list):
+            if isinstance(intent['responses'], list) and len(intent['responses']) > 1:
                 return random.choice(intent['responses']), None, max_probability
             return intent['responses'], None, max_probability
     return None, None, 0.0
