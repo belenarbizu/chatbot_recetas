@@ -1,0 +1,83 @@
+DIET = {
+    "vegana": "vegano",
+    "vegano": "vegano",
+    "vegetariana": "vegetariano",
+    "vegetariano": "vegetariano",
+    "sin gluten": "sin_gluten",
+    "no gluten": "sin_gluten",
+    "no tolero el gluten": "sin_gluten",
+    "no como gluten": "sin_gluten",
+    "no como carne": "vegetariano",
+    "no como pescado": "vegetariano",
+    "no como marisco": "vegetariano",
+    "sin carne": "vegetariano",
+    "sin pescado": "vegetariano",
+    "sin marisco": "vegetariano"
+}
+
+TYPE_FOOD = {
+    "almuerzo": "almuerzo",
+    "desayuno": "desayuno",
+    "cena": "cena",
+    "tapa": "tapa",
+    "postre": "postre",
+    "comida": "almuerzo",
+    "comida principal": "almuerzo",
+    "plato principal": "almuerzo",
+    "aperitivo": "tapa",
+    "comida ligera": "cena",
+    "almorzar": "almuerzo",
+    "cenar": "cena",
+    "tapeo": "tapa",
+    "dulce": "postre"
+}
+
+DIFFICULTY = {
+    "fácil": "fácil",
+    "facil": "fácil",
+    "sencilla": "fácil",
+    "sencillo": "fácil",
+    "simple": "fácil",
+    "para principiantes": "fácil",
+    "principiante": "fácil",
+    "difícil": "alta",
+    "dificil": "alta",
+    "alta": "alta",
+    "complicada": "alta",
+    "complicado": "alta",
+    "elaborada": "alta",
+    "elaborado": "alta",
+    "avanzada": "alta",
+    "avanzado": "alta",
+    "media": "media",
+    "intermedia": "media",
+    "intermedio": "media",
+    "normal": "media"
+}
+
+TIME = {
+    "rápido": 30,
+    "rapido": 30,
+    "rápida": 30,
+    "rapida": 30,
+    "poco tiempo": 30,
+    "express": 30,
+    "en 30 minutos": 30,
+    "menos de 30 minutos": 30,
+    "en media hora": 30,
+    "30 min": 30,
+    "15 minutos": 15,
+    "15 min": 15,
+    "en 15 minutos": 15,
+    "corta": 15,
+    "corto": 15,
+    "larga": 60,
+    "largo": 60,
+    "en 60 minutos": 60,
+    "una hora": 60,
+    "1 hora": 60,
+    "menos de una hora": 60,
+    "no tengo tiempo": 15,
+    "poco tiempo": 15,
+    "tiempo limitado": 15
+}
