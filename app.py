@@ -18,7 +18,7 @@ def main():
         return
 
     def chatbot_response(user_input, history):
-        response, instructions, probability = predict(model, tfidf_vectorizer, encoder, user_input)
+        response, ingredients, instructions, probability = predict(model, tfidf_vectorizer, encoder, user_input)
 
         if probability < THRESHOLD:
             return ["No estoy seguro de entenderte. ¿Podrías reformular tu pregunta sobre recetas de comida?"]
@@ -26,8 +26,8 @@ def main():
         if isinstance(response, list):
             response = random.choice(response)
 
-        if instructions:
-            return [f"Receta: {response}\nInstrucciones: {instructions}"]
+        if instructions and ingredients:
+            return [f"Receta: {response}\nIngredientes: {', '.join(ingredients)}\nInstrucciones: {instructions}"]
         else:
             return response
 

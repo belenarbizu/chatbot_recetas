@@ -5,7 +5,7 @@
       "patterns": ["hola", "buenos días", "qué tal", "hola qué tal", "holaa", "holaaa", "hola!", "buenas",
                     "buenos días", "buenas tardes", "buenas noches", "qué hay", "qué pasa", "saludos", "hey",
                     "ey", "hi", "hello", "holi", "holis", "qué tal estás", "cómo estás", "hola buenas",
-                    "hola, buenas", "que tal como estamos", "qué tal, cómo estás", "qué tal, cómo va todo"],
+                    "hola, buenas", "que tal como estamos", "qué tal, cómo estás", "qué tal, cómo va todo", "que tal", "que tal?"],
       "responses": ["¡Hola! ¿En qué puedo ayudarte sobre recetas de comida?",
                     "¡Buenas! Dime que ingredientes tienes y te sugiero una receta."]
     },
