@@ -64,9 +64,9 @@ def predict(model, tfidf_vectorizer, encoder, text):
             else:
                 best_recipes = find_best_recipes(recipes, text_ingredients)
             if not best_recipes:
-                return "No se encontraron recetas que coincidan con los ingredientes proporcionados.", None, None, max_probability
+                return "No se encontraron recetas que coincidan con los ingredientes proporcionados.", False, max_probability
             recipe = random.choice(best_recipes)
-            return recipe['nombre'], recipe["ingredientes"], recipe["instrucciones"], max_probability
+            return recipe, True, max_probability
         if tag == "dietas":
                 ingredients = get_all_ingredients(recipes)
                 text_ingredients = get_ingredients_from_text(text, ingredients)
@@ -75,20 +75,20 @@ def predict(model, tfidf_vectorizer, encoder, text):
                 difficulty = get_difficulty_from_text(text)
                 time = get_time_from_text(text)
                 if not diet:
-                    return "¿Qué tipo de dieta sigues? (vegana, vegetariana, sin gluten)", None, None, max_probability
+                    return "¿Qué tipo de dieta sigues? (vegana, vegetariana, sin gluten)", False, max_probability
                 if type_food or difficulty or time:
                     best_recipes = find_best_recipes(recipes, text_ingredients, diet, type_food, difficulty, time)
                 else:
                     best_recipes = find_best_recipes(recipes, text_ingredients, diet)
                 if not best_recipes:
-                    return f"No se encontraron recipes para la dieta {diet}.", None, None, max_probability
+                    return f"No se encontraron recipes para la dieta {diet}.", False, max_probability
                 recipe = random.choice(best_recipes)
-                return recipe['nombre'], recipe["ingredientes"], recipe["instrucciones"], max_probability
+                return recipe, True, max_probability
         if intent['tag'] == tag:
             if len(intent['responses']) > 1:
-                return random.choice(intent['responses']), None, None, max_probability
-            return intent['responses'][0], None, None, max_probability
-    return None, None, None, 0.0
+                return random.choice(intent['responses']), False, max_probability
+            return intent['responses'][0], False, max_probability
+    return None, 0.0
 
 
 def main():
@@ -96,7 +96,7 @@ def main():
     if not model:
         exit(1)
     user_input = input("Enter your message: ")
-    response, _, _, _ = predict(model, tfidf_vectorizer, encoder, user_input)
+    response, _, _ = predict(model, tfidf_vectorizer, encoder, user_input)
     if response:
         print(f"The predicted response is: {response}")
 

@@ -2,7 +2,7 @@
   {
     "id": 1,
     "nombre": "Tortilla de patatas",
-    "ingredientes": ["huevos", "patatas", "aceite de oliva", "sal", "cebolla"],
+    "ingredientes": ["huevos", "patatas", "aceite de oliva", "cebolla"],
     "ingredientes_principales": ["huevos", "patatas"],
     "categoria": "plato principal",
     "dificultad": "media",
@@ -16,7 +16,7 @@
   {
     "id": 2,
     "nombre": "Paella valenciana",
-    "ingredientes": ["arroz", "pollo", "conejo", "judías verdes", "garrofón", "tomate", "aceite de oliva", "azafrán", "sal", "pimentón"],
+    "ingredientes": ["arroz", "pollo", "conejo", "judías verdes", "garrofón", "tomate", "aceite de oliva", "azafrán", "pimentón"],
     "ingredientes_principales": ["arroz", "pollo", "conejo"],
     "categoria": "plato principal",
     "dificultad": "alta",
@@ -30,7 +30,7 @@
   {
     "id": 3,
     "nombre": "Gazpacho andaluz",
-    "ingredientes": ["tomate", "pepino", "pimiento verde", "ajo", "pan", "aceite de oliva", "vinagre", "sal", "agua"],
+    "ingredientes": ["tomate", "pepino", "pimiento verde", "ajo", "pan", "aceite de oliva", "vinagre", "agua"],
     "ingredientes_principales": ["tomate", "pepino", "pimiento verde"],
     "categoria": "entrante",
     "dificultad": "fácil",
@@ -44,7 +44,7 @@
   {
     "id": 4,
     "nombre": "Croquetas de jamón",
-    "ingredientes": ["jamón serrano", "leche", "harina", "mantequilla", "huevo", "pan rallado", "aceite", "sal", "nuez moscada"],
+    "ingredientes": ["jamón serrano", "leche", "harina", "mantequilla", "huevo", "pan rallado", "aceite", "nuez moscada"],
     "ingredientes_principales": ["jamón serrano", "leche", "harina"],
     "categoria": "entrante",
     "dificultad": "media",
@@ -58,7 +58,7 @@
   {
     "id": 5,
     "nombre": "Lentejas guisadas",
-    "ingredientes": ["lentejas", "chorizo", "morcilla", "zanahoria", "cebolla", "pimiento rojo", "ajo", "laurel", "pimentón", "aceite de oliva", "sal"],
+    "ingredientes": ["lentejas", "chorizo", "morcilla", "zanahoria", "cebolla", "pimiento rojo", "ajo", "laurel", "pimentón", "aceite de oliva"],
     "ingredientes_principales": ["lentejas", "chorizo", "zanahoria"],
     "categoria": "plato principal",
     "dificultad": "fácil",
@@ -72,7 +72,7 @@
   {
     "id": 6,
     "nombre": "Salmorejo cordobés",
-    "ingredientes": ["tomate", "pan", "ajo", "aceite de oliva", "vinagre", "sal", "huevo duro", "jamón serrano"],
+    "ingredientes": ["tomate", "pan", "ajo", "aceite de oliva", "vinagre", "huevo duro", "jamón serrano"],
     "ingredientes_principales": ["tomate", "pan"],
     "categoria": "entrante",
     "dificultad": "fácil",
@@ -86,7 +86,7 @@
   {
     "id": 7,
     "nombre": "Fabada asturiana",
-    "ingredientes": ["fabes", "chorizo", "morcilla", "lacón", "tocino", "azafrán", "pimentón", "ajo", "sal"],
+    "ingredientes": ["fabes", "chorizo", "morcilla", "lacón", "tocino", "azafrán", "pimentón", "ajo"],
     "ingredientes_principales": ["fabes", "chorizo", "morcilla"],
     "categoria": "plato principal",
     "dificultad": "media",
@@ -114,7 +114,7 @@
   {
     "id": 9,
     "nombre": "Patatas bravas",
-    "ingredientes": ["patatas", "aceite", "sal", "tomate", "pimentón picante", "ajo", "harina", "caldo"],
+    "ingredientes": ["patatas", "aceite", "tomate", "pimentón picante", "ajo", "harina", "caldo"],
     "ingredientes_principales": ["patatas"],
     "categoria": "entrante",
     "dificultad": "fácil",
@@ -142,7 +142,7 @@
   {
     "id": 11,
     "nombre": "Pisto manchego",
-    "ingredientes": ["calabacín", "pimiento rojo", "pimiento verde", "tomate", "cebolla", "ajo", "aceite de oliva", "sal", "huevo"],
+    "ingredientes": ["calabacín", "pimiento rojo", "pimiento verde", "tomate", "cebolla", "ajo", "aceite de oliva", "huevo"],
     "ingredientes_principales": ["calabacín", "pimiento", "tomate"],
     "categoria": "plato principal",
     "dificultad": "fácil",
@@ -156,7 +156,7 @@
   {
     "id": 12,
     "nombre": "Albóndigas en salsa",
-    "ingredientes": ["carne picada", "huevo", "pan rallado", "ajo", "perejil", "harina", "tomate", "cebolla", "vino blanco", "caldo", "aceite", "sal"],
+    "ingredientes": ["carne picada", "huevo", "pan rallado", "ajo", "perejil", "harina", "tomate", "cebolla", "vino blanco", "caldo", "aceite"],
     "ingredientes_principales": ["carne picada", "tomate"],
     "categoria": "plato principal",
     "dificultad": "media",
@@ -170,7 +170,7 @@
   {
     "id": 13,
     "nombre": "Empanada gallega",
-    "ingredientes": ["masa de empanada", "atún", "pimiento rojo", "cebolla", "tomate", "huevo duro", "aceite de oliva", "sal", "pimentón"],
+    "ingredientes": ["masa de empanada", "atún", "pimiento rojo", "cebolla", "tomate", "huevo duro", "aceite de oliva", "pimentón"],
     "ingredientes_principales": ["masa de empanada", "atún"],
     "categoria": "plato principal",
     "dificultad": "media",
@@ -184,7 +184,7 @@
   {
     "id": 14,
     "nombre": "Crema de calabaza",
-    "ingredientes": ["calabaza", "cebolla", "patata", "zanahoria", "caldo de verduras", "nata", "aceite de oliva", "sal", "pimienta"],
+    "ingredientes": ["calabaza", "cebolla", "patata", "zanahoria", "caldo de verduras", "nata", "aceite de oliva", "pimienta"],
     "ingredientes_principales": ["calabaza", "cebolla", "patata"],
     "categoria": "entrante",
     "dificultad": "fácil",
@@ -198,7 +198,7 @@
   {
     "id": 15,
     "nombre": "Migas del pastor",
-    "ingredientes": ["pan duro", "ajo", "pimentón", "aceite de oliva", "sal", "chorizo", "panceta", "pimiento", "uvas"],
+    "ingredientes": ["pan duro", "ajo", "pimentón", "aceite de oliva", "chorizo", "panceta", "pimiento", "uvas"],
     "ingredientes_principales": ["pan", "chorizo"],
     "categoria": "plato principal",
     "dificultad": "media",
@@ -254,7 +254,7 @@
   {
     "id": 19,
     "nombre": "Ensaladilla rusa",
-    "ingredientes": ["patatas", "zanahoria", "guisantes", "atún", "huevo", "mayonesa", "aceitunas", "sal"],
+    "ingredientes": ["patatas", "zanahoria", "guisantes", "atún", "huevo", "mayonesa", "aceitunas"],
     "ingredientes_principales": ["patatas", "zanahoria", "mayonesa"],
     "categoria": "entrante",
     "dificultad": "fácil",
@@ -282,7 +282,7 @@
   {
     "id": 21,
     "nombre": "Calamares a la romana",
-    "ingredientes": ["calamares", "harina", "huevo", "aceite", "sal", "limón"],
+    "ingredientes": ["calamares", "harina", "huevo", "aceite", "limón"],
     "ingredientes_principales": ["calamares", "harina"],
     "categoria": "entrante",
     "dificultad": "fácil",
@@ -310,7 +310,7 @@
   {
     "id": 23,
     "nombre": "Pollo al ajillo",
-    "ingredientes": ["pollo", "ajo", "vino blanco", "perejil", "aceite de oliva", "sal", "pimienta"],
+    "ingredientes": ["pollo", "ajo", "vino blanco", "perejil", "aceite de oliva", "pimienta"],
     "ingredientes_principales": ["pollo", "ajo"],
     "categoria": "plato principal",
     "dificultad": "fácil",
@@ -324,7 +324,7 @@
   {
     "id": 24,
     "nombre": "Tostadas con tomate",
-    "ingredientes": ["pan", "tomate", "aceite de oliva", "sal", "ajo"],
+    "ingredientes": ["pan", "tomate", "aceite de oliva", "ajo"],
     "ingredientes_principales": ["pan", "tomate"],
     "categoria": "desayuno",
     "dificultad": "fácil",
@@ -338,7 +338,7 @@
   {
     "id": 25,
     "nombre": "Churros con chocolate",
-    "ingredientes": ["harina", "agua", "sal", "aceite", "chocolate", "leche", "azúcar", "maicena"],
+    "ingredientes": ["harina", "agua", "aceite", "chocolate", "leche", "azúcar", "maicena"],
     "ingredientes_principales": ["harina", "chocolate"],
     "categoria": "postre",
     "dificultad": "media",
@@ -352,7 +352,7 @@
   {
     "id": 26,
     "nombre": "Merluza en salsa verde",
-    "ingredientes": ["merluza", "ajo", "perejil", "guisantes", "almejas", "harina", "aceite de oliva", "caldo de pescado", "sal"],
+    "ingredientes": ["merluza", "ajo", "perejil", "guisantes", "almejas", "harina", "aceite de oliva", "caldo de pescado"],
     "ingredientes_principales": ["merluza", "almejas", "guisantes"],
     "categoria": "plato principal",
     "dificultad": "media",
@@ -366,7 +366,7 @@
   {
     "id": 27,
     "nombre": "Rabo de toro",
-    "ingredientes": ["rabo de toro", "cebolla", "zanahoria", "tomate", "vino tinto", "caldo", "ajo", "laurel", "aceite de oliva", "harina", "sal", "pimienta"],
+    "ingredientes": ["rabo de toro", "cebolla", "zanahoria", "tomate", "vino tinto", "caldo", "ajo", "laurel", "aceite de oliva", "harina", "pimienta"],
     "ingredientes_principales": ["rabo de toro", "vino tinto"],
     "categoria": "plato principal",
     "dificultad": "alta",
@@ -394,7 +394,7 @@
   {
     "id": 29,
     "nombre": "Espinacas con garbanzos",
-    "ingredientes": ["espinacas", "garbanzos", "ajo", "pimentón", "comino", "aceite de oliva", "sal", "vinagre"],
+    "ingredientes": ["espinacas", "garbanzos", "ajo", "pimentón", "comino", "aceite de oliva", "vinagre"],
     "ingredientes_principales": ["espinacas", "garbanzos"],
     "categoria": "plato principal",
     "dificultad": "fácil",

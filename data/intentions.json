@@ -39,7 +39,7 @@
                     "cómo funcionas", "cómo es tu funcionamiento", "cómo es tu funcionamiento?",
                     "que sabes hacer?", "qué sabes hacer?", "que sabes hacer", "qué sabes hacer"],
       "responses": ["Puedo ayudarte con recetas de comida. Dime que ingredientes tienes o que dieta sigues.",
-                    "Estoy aquí para ayudarte con recetas de comida. ¿Qué te gustaría saber?"]
+                    "Puedo ayudarte a encontrar recetas. Prueba con:\n\n • 'Tengo huevos y patatas'\n • 'Quiero algo vegano para cenar'\n • 'Dame una receta fácil y rápida'\n • 'Receta de paella'\n\n También puedes combinar ingredientes, dietas y preferencias!"]
     },
     {
       "tag": "buscar_receta",
@@ -90,5 +90,5 @@
       "responses": ["No estoy seguro de entenderte. ¿Podrías reformular tu pregunta sobre recetas de comida?",
                     "Solo puedo ayudarte con temas relacionados con recetas de comida. ¿En qué puedo ayudarte?"]
     }
-  ]
+    ]
 }
