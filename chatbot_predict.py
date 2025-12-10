@@ -2,7 +2,9 @@ import pickle
 import json
 import random
 from match_recipe import get_all_ingredients, get_diet_from_text, get_ingredients_from_text, get_difficulty_from_text, get_time_from_text, find_best_recipes, get_type_food_from_text
+from logger import Logger
 
+logger = Logger()
 
 def load_model():
     try:
@@ -66,6 +68,7 @@ def predict(model, tfidf_vectorizer, encoder, text):
             if not best_recipes:
                 return "No se encontraron recetas que coincidan con los ingredientes proporcionados.", False, max_probability
             recipe = random.choice(best_recipes)
+            logger.log_interaction(text, recipe, max_probability)
             return recipe, True, max_probability
         if tag == "dietas":
                 ingredients = get_all_ingredients(recipes)
@@ -83,11 +86,17 @@ def predict(model, tfidf_vectorizer, encoder, text):
                 if not best_recipes:
                     return f"No se encontraron recipes para la dieta {diet}.", False, max_probability
                 recipe = random.choice(best_recipes)
+                logger.log_interaction(text, recipe, max_probability)
                 return recipe, True, max_probability
         if intent['tag'] == tag:
             if len(intent['responses']) > 1:
-                return random.choice(intent['responses']), False, max_probability
+                respone = random.choice(intent['responses'])
+                logger.log_interaction(text, respone, max_probability)
+                return respone, False, max_probability
+            logger.log_interaction(text, intent['responses'][0], max_probability)
             return intent['responses'][0], False, max_probability
+    
+    logger.log_interaction(text, "fallback", max_probability)
     return None, 0.0
 
 

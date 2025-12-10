@@ -3,10 +3,13 @@ import pickle
 from chatbot_predict import predict
 import json
 import random
+from logger import Logger
 
 THRESHOLD = 0.45
 
 def main():
+    logger = Logger()
+
     try:
         with open('model.pkl', 'rb') as file:
             data = pickle.load(file)
@@ -41,19 +44,41 @@ def main():
         else:
             return response
 
-    chatbot = gr.Chatbot(height=600)
 
-    gr.ChatInterface(
-        chatbot_response,
-        chatbot=chatbot,
-        title="Chatbot Intent Predictor",
-        description="Dime qué ingredientes tienes y te sugiero recetas. También puedes filtrar por dieta, dificultad o tiempo de preparación.",
-        examples=[
-            "Tengo huevos y patatas",
-            "Quiero algo vegano para cenar",
-            "Dame una receta fácil y rápida",
-            "Algo con pollo sin gluten"
-        ]).launch(theme=gr.themes.Soft())
+    def show_statistics():
+        stats = logger.get_statistics()
+        if stats:
+            stats_text = f"Total de interacciones: {stats['total_interactions']}\n"
+            stats_text += f"Confianza promedio: {stats['avg_confidence']:.2f}\n"
+            return gr.update(value=stats_text, visible=True)
+        else:
+            return gr.update(value="No se pudieron obtener las estadísticas.", visible=True)
+
+
+    with gr.Blocks() as demo:
+        gr.Markdown("# Chatbot Intent Predictor")
+        gr.Markdown("Dime qué ingredientes tienes y te sugiero recetas. También puedes filtrar por dieta, dificultad o tiempo de preparación.")
+
+        chatbot = gr.Chatbot(height=500)
+
+        gr.ChatInterface(
+            chatbot_response,
+            chatbot=chatbot,
+            examples=[
+                "Tengo huevos y patatas",
+                "Quiero algo vegano para cenar",
+                "Dame una receta fácil y rápida",
+                "Algo con pollo sin gluten"
+            ])
+
+        with gr.Row():
+            stats_button = gr.Button("Ver estadísticas de interacciones", size="sm")
+        
+        stats_output = gr.Textbox(label="Estadísticas", lines=4, visible=False)
+
+        stats_button.click(fn=show_statistics, inputs=None, outputs=stats_output)
+
+    demo.launch(theme=gr.themes.Soft())
 
 
 if __name__ == "__main__":
