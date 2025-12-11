@@ -5,6 +5,9 @@ import json
 class Logger():
 
     def __init__(self, path="logs/interactions.jsonl"):
+        if os.path.exists(path):
+            os.remove(path)
+        
         self.log_file = path
         os.makedirs(os.path.dirname(self.log_file), exist_ok=True)
 

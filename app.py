@@ -4,6 +4,7 @@ from chatbot_predict import predict
 import json
 import random
 from logger import Logger
+import os
 
 THRESHOLD = 0.45
 
