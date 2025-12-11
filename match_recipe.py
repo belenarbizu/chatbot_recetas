@@ -51,15 +51,25 @@ def get_time_from_text(text):
 
 def score_recipe_match(recipe, input_ingredients, diet=None, type_food=None, difficulty=None, time=None):
     score = 0
+    recipe_info = {
+        "matching_ingredients": None,
+        "matching_main_ingredients": None,
+        "diet": None,
+        "type_food": None,
+        "difficulty": None,
+        "time": None
+    }
 
     if input_ingredients:
         recipe_ingredients = recipe.get('ingredientes', [])
         matching_ingredients = set(recipe_ingredients).intersection(set(input_ingredients))
         score += len(matching_ingredients) * 2
+        recipe_info["matching_ingredients"] = matching_ingredients
 
         main_ingredients = recipe.get('ingredientes_principales', [])
         matching_main_ingredients = set(main_ingredients).intersection(set(input_ingredients))
         score += len(matching_main_ingredients) * 5
+        recipe_info["matching_main_ingredients"] = matching_main_ingredients
 
         missing_ingredients = set(main_ingredients) - set(input_ingredients)
         score -= len(missing_ingredients)
@@ -68,33 +78,40 @@ def score_recipe_match(recipe, input_ingredients, diet=None, type_food=None, dif
         dieta_type = recipe.get('dieta', None)
         if diet in dieta_type:
             score += 10
+        recipe_info["diet"] = dieta_type
     
     if type_food:
         recipe_type_food = recipe.get('tipo_comida', None)
         if type_food in recipe_type_food:
             score += 5
+        recipe_info["type_food"] = recipe_type_food
 
     if difficulty:
         difficulty_recipe = recipe.get('dificultad', None)
         if difficulty == difficulty_recipe:
             score += 3
+        recipe_info["difficulty"] = difficulty_recipe
 
     if time:
         time_recipe = recipe.get('tiempo_minutos', None)
         if time_recipe and time_recipe <= time:
             score += 2
+        recipe_info["time"] = time_recipe
 
-    return score
+    return score, recipe_info
 
 
 def find_best_recipes(recipes, input_ingredients, diet=None, type_food=None, difficulty=None, time=None):
     scores = []
+    recipe_info_list = []
 
     for recipe in recipes:
-        score = score_recipe_match(recipe, input_ingredients, diet, type_food, difficulty, time)
+        score, recipe_info = score_recipe_match(recipe, input_ingredients, diet, type_food, difficulty, time)
         if score > 0:
             scores.append((recipe, score))
+            recipe_info_list.append((recipe, recipe_info))
     
     scores.sort(key=lambda x: x[1], reverse=True)
     best_recipes = [recipe for recipe, score in scores[:3]]
-    return best_recipes
+    best_recipes_info = [info for recipe, info in recipe_info_list if recipe in best_recipes]
+    return best_recipes, best_recipes_info

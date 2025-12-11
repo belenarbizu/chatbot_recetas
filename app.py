@@ -50,9 +50,15 @@ def main():
         if stats:
             stats_text = f"Total de interacciones: {stats['total_interactions']}\n"
             stats_text += f"Confianza promedio: {stats['avg_confidence']:.2f}\n"
-            return gr.update(value=stats_text, visible=True)
+            stats_text += "Ingredientes más buscados:\n"
+            for ingredient, count in sorted(stats['most_searched_ingredients'].items(), key=lambda x: x[1], reverse=True):
+                stats_text += f"{ingredient}: {count}\n"
+            stats_text += "Dietas más buscadas:\n"
+            for diet, count in sorted(stats['most_searched_diets'].items(), key=lambda x: x[1], reverse=True):
+                stats_text += f"{diet}: {count}\n"
+            return gr.update(value=stats_text)
         else:
-            return gr.update(value="No se pudieron obtener las estadísticas.", visible=True)
+            return gr.update(value="No se pudieron obtener las estadísticas.")
 
 
     with gr.Blocks() as demo:
@@ -74,7 +80,7 @@ def main():
         with gr.Row():
             stats_button = gr.Button("Ver estadísticas de interacciones", size="sm")
         
-        stats_output = gr.Textbox(label="Estadísticas", lines=4, visible=False)
+        stats_output = gr.Textbox(label="Estadísticas", lines=4)
 
         stats_button.click(fn=show_statistics, inputs=None, outputs=stats_output)
 
