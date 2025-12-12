@@ -1,8 +1,17 @@
 import pickle
 import json
 import random
-from match_recipe import get_all_ingredients, get_diet_from_text, get_ingredients_from_text, get_difficulty_from_text, get_time_from_text, find_best_recipes, get_type_food_from_text
+from match_recipe import (
+    get_all_ingredients,
+    get_diet_from_text,
+    get_ingredients_from_text,
+    get_difficulty_from_text,
+    get_time_from_text,
+    find_best_recipes,
+    get_type_food_from_text
+)
 from logger import Logger
+from context import Context
 
 logger = Logger()
 
@@ -40,13 +49,26 @@ def open_recipes_file():
         return None
 
 
-def predict(model, tfidf_vectorizer, encoder, text):
+def get_info_from_user_input(text, ingredients):
+    ingredients = get_ingredients_from_text(text, ingredients)
+    type_food = get_type_food_from_text(text)
+    difficulty = get_difficulty_from_text(text)
+    time = get_time_from_text(text)
+    diet = get_diet_from_text(text)
+    return ingredients, type_food, difficulty, time, diet
+
+
+def predict(model, tfidf_vectorizer, encoder, text, context=None):
     data = open_intentions_file()
-    if not data:
-        exit(1)
     recipes = open_recipes_file()
-    if not recipes:
+    if not data or not recipes:
         exit(1)
+    
+    if context is None:
+        context = Context()
+    
+    if context.is_expired():
+        context.reset()
 
     X_test = tfidf_vectorizer.transform([text])
     y_pred = model.predict(X_test)[0]
@@ -57,39 +79,27 @@ def predict(model, tfidf_vectorizer, encoder, text):
     for intent in data['intents']:
         if tag == "buscar_receta":
             ingredients = get_all_ingredients(recipes)
-            text_ingredients = get_ingredients_from_text(text, ingredients)
-            type_food = get_type_food_from_text(text)
-            difficulty = get_difficulty_from_text(text)
-            time = get_time_from_text(text)
-            if type_food or difficulty or time:
-                best_recipes, best_recipes_info = find_best_recipes(recipes, text_ingredients, type_food=type_food, difficulty=difficulty, time=time)
+            text_ingredients, type_food, difficulty, time, diet = get_info_from_user_input(text, ingredients)
+            if text_ingredients:
+                context.add_ingredients(text_ingredients)
+            if diet:
+                context.set_diet(diet)
+            if type_food:
+                context.set_type_food(type_food)
+            if difficulty:
+                context.set_difficulty(difficulty)
+            if time:
+                context.set_time(time)
+            if context.user_ingredients:
+                best_recipes, best_recipes_info = find_best_recipes(recipes, context.user_ingredients, diet=context.diet, type_food=context.type_food, difficulty=context.difficulty, time=context.time)
             else:
-                best_recipes, best_recipes_info = find_best_recipes(recipes, text_ingredients)
+                best_recipes, best_recipes_info = find_best_recipes(recipes, text_ingredients, diet=diet, type_food=type_food, difficulty=difficulty, time=time)
             if not best_recipes:
-                return "No se encontraron recetas que coincidan con los ingredientes proporcionados.", False, max_probability
+                return "No se encontraron recetas que coincidan con los datos dados.", False, max_probability
             recipe = random.choice(best_recipes)
             recipe_info = best_recipes_info[best_recipes.index(recipe)]
             logger.log_interaction(text, recipe, max_probability, recipe_info)
             return recipe, True, max_probability
-        if tag == "dietas":
-                ingredients = get_all_ingredients(recipes)
-                text_ingredients = get_ingredients_from_text(text, ingredients)
-                type_food = get_type_food_from_text(text)
-                diet = get_diet_from_text(text)
-                difficulty = get_difficulty_from_text(text)
-                time = get_time_from_text(text)
-                if not diet:
-                    return "¿Qué tipo de dieta sigues? (vegana, vegetariana, sin gluten)", False, max_probability
-                if type_food or difficulty or time:
-                    best_recipes, best_recipes_info = find_best_recipes(recipes, text_ingredients, diet, type_food, difficulty, time)
-                else:
-                    best_recipes, best_recipes_info = find_best_recipes(recipes, text_ingredients, diet)
-                if not best_recipes:
-                    return f"No se encontraron recipes para la dieta {diet}.", False, max_probability
-                recipe = random.choice(best_recipes)
-                recipe_info = best_recipes_info[best_recipes.index(recipe)]
-                logger.log_interaction(text, recipe, max_probability, recipe_info)
-                return recipe, True, max_probability
         if intent['tag'] == tag:
             if len(intent['responses']) > 1:
                 respone = random.choice(intent['responses'])

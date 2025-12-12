@@ -1,3 +1,5 @@
 *.pyc
 env/
 *.pkl
+logs/
+__pycache__/
