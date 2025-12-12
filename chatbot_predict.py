@@ -95,21 +95,21 @@ def predict(model, tfidf_vectorizer, encoder, text, context=None):
             else:
                 best_recipes, best_recipes_info = find_best_recipes(recipes, text_ingredients, diet=diet, type_food=type_food, difficulty=difficulty, time=time)
             if not best_recipes:
-                return "No se encontraron recetas que coincidan con los datos dados.", False, max_probability
+                return "No se encontraron recetas que coincidan con los datos dados.", False, max_probability, context
             recipe = random.choice(best_recipes)
             recipe_info = best_recipes_info[best_recipes.index(recipe)]
             logger.log_interaction(text, recipe, max_probability, recipe_info)
-            return recipe, True, max_probability
+            return recipe, True, max_probability, context
         if intent['tag'] == tag:
             if len(intent['responses']) > 1:
                 respone = random.choice(intent['responses'])
                 logger.log_interaction(text, respone, max_probability)
-                return respone, False, max_probability
+                return respone, False, max_probability, context
             logger.log_interaction(text, intent['responses'][0], max_probability)
-            return intent['responses'][0], False, max_probability
+            return intent['responses'][0], False, max_probability, context
     
     logger.log_interaction(text, "fallback", max_probability)
-    return None, 0.0
+    return None, False, 0.0, context
 
 
 def main():

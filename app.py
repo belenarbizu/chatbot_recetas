@@ -5,11 +5,13 @@ import json
 import random
 from logger import Logger
 import os
+from context import Context
 
 THRESHOLD = 0.45
 
 def main():
     logger = Logger()
+    context = Context()
 
     try:
         with open('model.pkl', 'rb') as file:
@@ -22,7 +24,10 @@ def main():
         return
 
     def chatbot_response(user_input, history):
-        response, is_a_recipe, probability = predict(model, tfidf_vectorizer, encoder, user_input)
+        nonlocal context
+        response, is_a_recipe, probability, updated_context = predict(model, tfidf_vectorizer, encoder, user_input, context)
+
+        context = updated_context
 
         if probability < THRESHOLD:
             return ["No estoy seguro de entenderte. ¿Podrías reformular tu pregunta sobre recetas de comida?"]
@@ -32,6 +37,22 @@ def main():
 
         if is_a_recipe:
             phrase = f"¡Te sugiero {response['nombre']}!"
+
+            reasons = []
+            if context.user_ingredients:
+                reasons.append(f"porque coincide con los ingredientes que tienes: {', '.join(context.user_ingredients)}")
+            if context.diet:
+                reasons.append(f"porque es apta para la dieta {context.diet}")
+            if context.type_food:
+                reasons.append(f"porque es para una {context.type_food}")
+            if context.difficulty:
+                reasons.append(f"porque tiene una dificultad {context.difficulty}")
+            if context.time:
+                reasons.append(f"porque se puede preparar en {context.time} minutos o menos")
+            
+            if reasons:
+                phrase += f"\n\nTe la recomiendo {', '.join(reasons)}."
+
             phrase += f"\n\n📝 Ingredientes:\n" + "\n".join([f"• {ing}" for ing in response['ingredientes']])
             phrase += f"\n\n📌 Instrucciones:\n" + f"{response['instrucciones']}"
             phrase += f"\n\n📊 Información:"
