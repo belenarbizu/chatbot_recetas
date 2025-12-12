@@ -12,6 +12,7 @@ class Context:
         self.difficulty = None
         self.type_food = None
         self.last_recipes = []
+        self.last_intent = None
         self.last_update = datetime.now()
 
 
@@ -39,6 +40,11 @@ class Context:
 
     def set_difficulty(self, difficulty):
         self.difficulty = difficulty
+        self.last_update = datetime.now()
+    
+
+    def set_last_intent(self, intent):
+        self.last_intent = intent
         self.last_update = datetime.now()
 
 
