@@ -60,12 +60,8 @@
                     "dame ideas para cocinar", "dame ideas para cenar", "dame ideas para comer",
                     "enseñame a hacer", "enséñame a hacer", "algo rápido para cocinar", "algo rapido para cocinar",
                     "algo sencillo para cocinar", "algo simple para cocinar", "algo rápido para comer",
-                    "algo rapido para comer", "algo sencillo para comer", "algo simple para comer"],
-        "responses": []
-    },
-    {
-      "tag": "dietas",
-      "patterns": ["recetas veganas", "recetas vegetarianas", "recetas sin gluten",
+                    "algo rapido para comer", "algo sencillo para comer", "algo simple para comer",
+                    "recetas veganas", "recetas vegetarianas", "recetas sin gluten",
                     "tienes recetas veganas?", "tienes recetas vegetarianas?", "tienes recetas sin gluten?",
                     "puedes darme recetas veganas?", "puedes darme recetas vegetarianas?",
                     "puedes darme recetas sin gluten?", "me puedes dar recetas veganas?",
@@ -82,7 +78,7 @@
                     "dame una receta vegetariana", "dame una receta sin gluten",
                     "sugiere una receta vegana", "sugiere una receta vegetariana",
                     "sugiere una receta sin gluten"],
-      "responses": []
+        "responses": []
     },
     {
       "tag": "fallback",

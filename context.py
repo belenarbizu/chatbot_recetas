@@ -12,7 +12,6 @@ class Context:
         self.difficulty = None
         self.type_food = None
         self.last_recipes = []
-        self.conversation_history = []
         self.last_update = datetime.now()
 
 
@@ -48,17 +47,6 @@ class Context:
         self.last_update = datetime.now()
 
 
-    def add_to_history(self, user_input, bot_response):
-        self.conversation_history.append({
-            "timestamp": datetime.now().isoformat(),
-            "user": user_input,
-            "bot": bot_response
-        })
-
-        if len(self.conversation_history) > 20:
-            self.conversation_history = self.conversation_history[-20:]
-
-
     def get_context_summary(self):
         return {
             "ingredients": self.user_ingredients,
@@ -66,8 +54,7 @@ class Context:
             "time": self.time,
             "difficulty": self.difficulty,
             "type_food": self.type_food,
-            "last_recipes": self.last_recipes,
-            "conversation_history": self.conversation_history
+            "last_recipes": self.last_recipes
         }
 
 

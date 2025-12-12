@@ -78,9 +78,28 @@ def main():
             stats_text += "Dietas más buscadas:\n"
             for diet, count in sorted(stats['most_searched_diets'].items(), key=lambda x: x[1], reverse=True):
                 stats_text += f"{diet}: {count}\n"
-            return gr.update(value=stats_text)
+            return stats_text
         else:
-            return gr.update(value="No se pudieron obtener las estadísticas.")
+            return "No se pudieron obtener las estadísticas."
+
+
+    def reset_context():
+        nonlocal context
+        context.reset()
+        return "Conversación reiniciada."
+
+
+    def show_context():
+        nonlocal context
+        summary = context.get_context_summary()
+        context_text = "Contexto actual:\n"
+        context_text += f"Ingredientes: {', '.join(summary['ingredients']) if summary['ingredients'] else 'Ninguno'}\n"
+        context_text += f"Dieta: {summary['diet'] if summary['diet'] else 'Ninguna'}\n"
+        context_text += f"Tipo de comida: {summary['type_food'] if summary['type_food'] else 'Ninguno'}\n"
+        context_text += f"Dificultad: {summary['difficulty'] if summary['difficulty'] else 'Ninguna'}\n"
+        context_text += f"Tiempo: {summary['time'] if summary['time'] else 'Ninguno'} minutos\n"
+        context_text += f"Últimas recetas sugeridas: {len(summary['last_recipes'])}\n"
+        return context_text
 
 
     with gr.Blocks() as demo:
@@ -101,10 +120,14 @@ def main():
 
         with gr.Row():
             stats_button = gr.Button("Ver estadísticas de interacciones", size="sm")
+            reset_button = gr.Button("Reiniciar conversación", size="sm")
+            context_button = gr.Button("Ver contexto actual", size="sm")
         
-        stats_output = gr.Textbox(label="Estadísticas", lines=4)
+        info_output = gr.Textbox(label="Información", lines=4)
 
-        stats_button.click(fn=show_statistics, inputs=None, outputs=stats_output)
+        stats_button.click(fn=show_statistics, inputs=None, outputs=info_output)
+        reset_button.click(fn=reset_context, inputs=None, outputs=info_output)
+        context_button.click(fn=show_context, inputs=None, outputs=info_output)
 
     demo.launch(theme=gr.themes.Soft())
 
