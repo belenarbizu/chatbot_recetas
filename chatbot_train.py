@@ -1,10 +1,12 @@
 import json
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.svm import SVC
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
 import pickle
+import matplotlib.pyplot as plt
+import os
 
 def open_file():
     try:
@@ -49,16 +51,43 @@ def split_data(X, y):
 
 
 def create_model(X_train, y_train, X_test, y_test):
+    param_grid = {
+        'C': [0.1, 1, 10, 100],
+        'kernel': ['linear', 'rbf'],
+        'gamma': ['scale', 'auto']
+    }
     model = SVC(kernel='linear', probability=True)
-    model.fit(X_train, y_train)
-    accuracy = model.score(X_test, y_test)
+    grid_search = GridSearchCV(model, param_grid, cv=5, n_jobs=-1, scoring='accuracy')
+    grid_search.fit(X_train, y_train)
+    best_params = grid_search.best_params_
+    print(f"Best parameters found: {best_params}")
+    best_model = grid_search.best_estimator_
+    accuracy = best_model.score(X_test, y_test)
     print(f"Model created and evaluated successfully. Accuracy: {accuracy * 100:.2f}%")
-    return model
+    return best_model
+    # model.fit(X_train, y_train)
+    # accuracy = model.score(X_test, y_test)
+    # print(f"Model created and evaluated successfully. Accuracy: {accuracy * 100:.2f}%")
+    # return model
 
 
 def save_model(model, tfidf_vectorizer, encoder):
     with open('model.pkl', 'wb') as file:
         pickle.dump({'model': model, 'vectorizer': tfidf_vectorizer, 'encoder': encoder}, file)
+
+
+def save_metrics(model, X_test, y_test, tfidf_vectorizer, encoder):
+    try:
+        os.makedirs('figs', exist_ok=True)
+    except OSError as e:
+        print(f"Error creating directory for figures: {e}")
+        return
+    y_pred = model.predict(X_test)
+
+    ConfusionMatrixDisplay(confusion_matrix(y_test, y_pred), display_labels=encoder.classes_).plot()
+    plt.savefig('figs/confusion_matrix.png')
+    print(classification_report(y_test, y_pred, target_names=encoder.classes_))
+
 
 
 def main():
@@ -70,6 +99,7 @@ def main():
     X_train, X_test, y_train, y_test = split_data(X, y)
     model = create_model(X_train, y_train, X_test, y_test)
     save_model(model, tfidf_vectorizer, encoder)
+    save_metrics(model, X_test, y_test, tfidf_vectorizer, encoder)
 
 
 if __name__ == "__main__":
