@@ -1,14 +1,3 @@
----
-title: Chatbot de Recetas con NLP
-emoji: 🍳
-colorFrom: orange
-colorTo: red
-sdk: gradio
-sdk_version: 4.44.0
-app_file: app.py
-pinned: false
----
-
 # 🍳 Asistente de Recetas con IA
 
 Un chatbot inteligente que te sugiere recetas basándose en tus ingredientes disponibles.
@@ -44,27 +33,3 @@ Bot: Busca con todos los ingredientes acumulados
 ## 👨‍💻 Autor
 
 [Belén Arbizu] - [belenarbizu]
-```
-
-### C) **Estructura de archivos para HF**
-```
-tu-chatbot-recetas/
-│
-├── app.py                    # Punto de entrada
-├── chatbot_predict.py
-├── logger.py
-├── context.py
-├── match_recipe.py
-├── chatbot_train.py
-├── filters.py
-│
-├── data/
-│   ├── intentions.json
-│   └── recetas.json
-│
-├── model.pkl                 # Modelo entrenado
-│
-├── requirements.txt
-├── README.md
-└── .gitignore
-```
