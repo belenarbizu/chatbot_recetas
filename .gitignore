@@ -3,3 +3,5 @@ env/
 *.pkl
 logs/
 __pycache__/
+figs/
+*.png
