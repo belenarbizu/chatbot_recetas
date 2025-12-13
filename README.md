@@ -33,6 +33,3 @@ Bot: Busca con todos los ingredientes acumulados
 ## 👨‍💻 Autor
 
 [Belén Arbizu] - [belenarbizu]
-```
-└── .gitignore
-```
