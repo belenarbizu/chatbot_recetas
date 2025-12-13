@@ -87,7 +87,7 @@ def main():
     def reset_context():
         nonlocal context
         context.reset()
-        return None, "Conversación reiniciada."
+        return None, "Contexto reiniciado."
 
 
     def show_context():
