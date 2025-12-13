@@ -65,10 +65,6 @@ def create_model(X_train, y_train, X_test, y_test):
     accuracy = best_model.score(X_test, y_test)
     print(f"Model created and evaluated successfully. Accuracy: {accuracy * 100:.2f}%")
     return best_model
-    # model.fit(X_train, y_train)
-    # accuracy = model.score(X_test, y_test)
-    # print(f"Model created and evaluated successfully. Accuracy: {accuracy * 100:.2f}%")
-    # return model
 
 
 def save_model(model, tfidf_vectorizer, encoder):
