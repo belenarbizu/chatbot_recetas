@@ -25,8 +25,11 @@ def main():
 
     def chatbot_response(user_input, history):
         nonlocal context
-        response, is_a_recipe, probability, updated_context = predict(model, tfidf_vectorizer, encoder, user_input, context)
-
+        try:
+            response, is_a_recipe, probability, updated_context = predict(model, tfidf_vectorizer, encoder, user_input, context)
+        except Exception as e:
+            print(f"Error: {e}")
+            return "Lo siento, ha ocurrido un error al procesar tu solicitud. Por favor, intenta de nuevo."
         context = updated_context
 
         if probability < THRESHOLD:
@@ -104,7 +107,14 @@ def main():
 
     with gr.Blocks() as demo:
         gr.Markdown("# Chatbot Intent Predictor")
-        gr.Markdown("Dime qué ingredientes tienes y te sugiero recetas. También puedes filtrar por dieta, dificultad o tiempo de preparación.")
+        gr.Markdown("""
+        ### ¿Cómo usar este chatbot?
+        1. Dime qué ingredientes tienes disponibles: "Tengo huevos y patatas".
+        2. Añade preferencias (opcional): "Algo vegano para cenar", "Quiero una receta rápida".
+        3. Elige entre las opciones que te sugiero.
+
+        **Tip**: Puedo recordar ingredientes y preferencias que me digas durante la conversación. Si dices "también tengo espinacas y queso", buscaré recetas que incluyan todos esos ingredientes.
+        """)
 
         chatbot = gr.Chatbot(height=500)
 
@@ -113,6 +123,7 @@ def main():
             chatbot=chatbot,
             examples=[
                 "Tengo huevos y patatas",
+                "También tengo espinacas y queso",
                 "Quiero algo vegano para cenar",
                 "Dame una receta fácil y rápida",
                 "Algo con pollo sin gluten"
