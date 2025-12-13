@@ -4,7 +4,6 @@ from chatbot_predict import predict
 import json
 import random
 from logger import Logger
-import os
 from context import Context
 
 THRESHOLD = 0.45
@@ -56,13 +55,12 @@ def main():
             if reasons:
                 phrase += f"\n\nTe la recomiendo {', '.join(reasons)}."
 
-            phrase += f"\n\n📝 Ingredientes:\n" + "\n".join([f"• {ing}" for ing in response['ingredientes']])
+            phrase += f"\n\n📝 Ingredientes:\n" + ", ".join([f"{ing}" for ing in response['ingredientes']])
             phrase += f"\n\n📌 Instrucciones:\n" + f"{response['instrucciones']}"
             phrase += f"\n\n📊 Información:"
             phrase += f"\n• Porciones: {response['porciones']}"
             phrase += f"\n• Tiempo: {response['tiempo_minutos']} minutos"
             phrase += f"\n• Dificultad: {response['dificultad'].capitalize()}"
-            phrase += f"\n• Calorías aprox: {response['calorias_aprox']} kcal/porción"
             if response.get('dieta'):
                 phrase += f"\n• Dieta: {', '.join(response['dieta'])}"
             return phrase
@@ -89,7 +87,7 @@ def main():
     def reset_context():
         nonlocal context
         context.reset()
-        return "Conversación reiniciada."
+        return None, "Conversación reiniciada."
 
 
     def show_context():
@@ -106,21 +104,21 @@ def main():
 
 
     with gr.Blocks() as demo:
-        gr.Markdown("# Chatbot Intent Predictor")
-        gr.Markdown("""
-        ### ¿Cómo usar este chatbot?
-        1. Dime qué ingredientes tienes disponibles: "Tengo huevos y patatas".
-        2. Añade preferencias (opcional): "Algo vegano para cenar", "Quiero una receta rápida".
-        3. Elige entre las opciones que te sugiero.
-
-        **Tip**: Puedo recordar ingredientes y preferencias que me digas durante la conversación. Si dices "también tengo espinacas y queso", buscaré recetas que incluyan todos esos ingredientes.
-        """)
-
         chatbot = gr.Chatbot(height=500)
+        
+        gr.Markdown("<h1 style='text-align: center; font-size: 22px;'>🍳 Chatbot de Recetas</h1>")
 
         gr.ChatInterface(
             chatbot_response,
             chatbot=chatbot,
+            title=None,
+            description="""<div style='font-size: 14px;'>
+            ¿Cómo usar este chatbot?</br>
+            1. Dime qué ingredientes tienes disponibles: "Tengo huevos y patatas".</br>
+            2. Añade preferencias (opcional): "Algo vegano para cenar", "Quiero una receta rápida".</br>
+            3. Elige entre las opciones que te sugiero.</br>
+            💡<strong>Tip</strong>: Puedo recordar ingredientes y preferencias que me digas durante la conversación. Si dices "también tengo espinacas y queso", buscaré recetas que incluyan todos esos ingredientes.
+            </div>""",
             examples=[
                 "Tengo huevos y patatas",
                 "También tengo espinacas y queso",
@@ -137,7 +135,7 @@ def main():
         info_output = gr.Textbox(label="Información", lines=4)
 
         stats_button.click(fn=show_statistics, inputs=None, outputs=info_output)
-        reset_button.click(fn=reset_context, inputs=None, outputs=info_output)
+        reset_button.click(fn=reset_context, inputs=None, outputs=[chatbot, info_output])
         context_button.click(fn=show_context, inputs=None, outputs=info_output)
 
     demo.launch(theme=gr.themes.Soft())

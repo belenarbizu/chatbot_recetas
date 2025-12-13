@@ -9,7 +9,7 @@
     "tiempo_minutos": 45,
     "porciones": 4,
     "tipo_comida": ["almuerzo", "cena"],
-    "dieta": ["vegetariano"],
+    "dieta": ["vegetariana"],
     "instrucciones": "1. Pela y corta las patatas en rodajas finas. 2. Fríe las patatas con la cebolla en aceite caliente hasta que estén tiernas. 3. Bate los huevos con sal. 4. Mezcla las patatas con los huevos batidos. 5. Cuaja la tortilla por ambos lados en una sartén.",
     "calorias_aprox": 250
   },
@@ -37,7 +37,7 @@
     "tiempo_minutos": 15,
     "porciones": 4,
     "tipo_comida": ["almuerzo", "cena"],
-    "dieta": ["vegano", "vegetariano"],
+    "dieta": ["vegana", "vegetariana"],
     "instrucciones": "1. Trocea todos los vegetales. 2. Pon en remojo el pan. 3. Tritura todo junto con el aceite, vinagre y agua. 4. Añade sal al gusto. 5. Refrigera antes de servir.",
     "calorias_aprox": 120
   },
@@ -79,7 +79,7 @@
     "tiempo_minutos": 15,
     "porciones": 4,
     "tipo_comida": ["almuerzo", "cena"],
-    "dieta": ["vegetariano"],
+    "dieta": ["vegetariana"],
     "instrucciones": "1. Tritura los tomates con pan remojado, ajo, aceite, vinagre y sal. 2. Bate hasta conseguir una textura cremosa. 3. Refrigera. 4. Sirve decorado con huevo duro picado y trocitos de jamón.",
     "calorias_aprox": 180
   },
@@ -107,7 +107,7 @@
     "tiempo_minutos": 60,
     "porciones": 4,
     "tipo_comida": ["almuerzo", "cena"],
-    "dieta": ["sin_gluten"],
+    "dieta": ["sin gluten"],
     "instrucciones": "1. Congela el pulpo previamente para ablandarlo. 2. Hierve agua con sal. 3. 'Asusta' el pulpo sumergiéndolo 3 veces. 4. Cocina 40-50 minutos. 5. Hierve las patatas. 6. Corta el pulpo en rodajas, coloca sobre las patatas y aliña con pimentón, sal y aceite.",
     "calorias_aprox": 280
   },
@@ -121,7 +121,7 @@
     "tiempo_minutos": 40,
     "porciones": 4,
     "tipo_comida": ["almuerzo", "cena", "tapa"],
-    "dieta": ["vegano", "vegetariano"],
+    "dieta": ["vegana", "vegetariana"],
     "instrucciones": "1. Corta las patatas en dados. 2. Fríe las patatas hasta que estén doradas. 3. Para la salsa brava: sofríe ajo, añade harina, tomate triturado, pimentón picante y caldo. 4. Cocina hasta espesar. 5. Sirve las patatas con la salsa brava por encima.",
     "calorias_aprox": 320
   },
@@ -135,7 +135,7 @@
     "tiempo_minutos": 60,
     "porciones": 6,
     "tipo_comida": ["postre"],
-    "dieta": ["vegetariano", "sin_gluten"],
+    "dieta": ["vegetariana", "sin gluten"],
     "instrucciones": "1. Haz caramelo con azúcar y reparte en moldes. 2. Bate huevos con leche, azúcar y vainilla. 3. Vierte la mezcla en los moldes. 4. Cocina al baño maría en el horno a 170°C durante 45 minutos. 5. Deja enfriar y desmolda.",
     "calorias_aprox": 220
   },
@@ -149,7 +149,7 @@
     "tiempo_minutos": 40,
     "porciones": 4,
     "tipo_comida": ["almuerzo", "cena"],
-    "dieta": ["vegetariano"],
+    "dieta": ["vegetariana"],
     "instrucciones": "1. Corta todas las verduras en dados pequeños. 2. Sofríe la cebolla y el ajo. 3. Añade los pimientos y el calabacín. 4. Incorpora el tomate y cocina hasta que espese. 5. Opcionalmente, sirve con un huevo frito encima.",
     "calorias_aprox": 150
   },
@@ -191,7 +191,7 @@
     "tiempo_minutos": 35,
     "porciones": 4,
     "tipo_comida": ["almuerzo", "cena"],
-    "dieta": ["vegetariano"],
+    "dieta": ["vegetariana"],
     "instrucciones": "1. Sofríe la cebolla en aceite. 2. Añade la calabaza, patata y zanahoria troceadas. 3. Cubre con caldo y cocina hasta que las verduras estén tiernas. 4. Tritura hasta obtener una crema suave. 5. Añade nata, sal y pimienta al gusto.",
     "calorias_aprox": 140
   },
@@ -219,7 +219,7 @@
     "tiempo_minutos": 45,
     "porciones": 6,
     "tipo_comida": ["postre"],
-    "dieta": ["vegetariano", "sin_gluten"],
+    "dieta": ["vegetariana", "sin gluten"],
     "instrucciones": "1. Hierve el arroz en agua con canela y piel de limón. 2. Cuando esté tierno, añade la leche caliente poco a poco. 3. Incorpora el azúcar y cocina removiendo. 4. Añade mantequilla al final. 5. Deja enfriar y espolvorea con canela.",
     "calorias_aprox": 260
   },
@@ -233,7 +233,7 @@
     "tiempo_minutos": 30,
     "porciones": 4,
     "tipo_comida": ["almuerzo", "cena"],
-    "dieta": ["sin_gluten"],
+    "dieta": ["sin gluten"],
     "instrucciones": "1. Lamina los ajos y fríe con la guindilla en aceite de oliva. 2. Retira y reserva. 3. Cocina el bacalao en el mismo aceite con la piel hacia arriba. 4. Mueve la cazuela en círculos para emulsionar el aceite con la gelatina del bacalao. 5. Sirve con los ajos por encima.",
     "calorias_aprox": 320
   },
@@ -247,7 +247,7 @@
     "tiempo_minutos": 30,
     "porciones": 6,
     "tipo_comida": ["postre", "desayuno"],
-    "dieta": ["vegetariano"],
+    "dieta": ["vegetariana"],
     "instrucciones": "1. Hierve la leche con azúcar y canela. 2. Remoja las rebanadas de pan en la leche. 3. Pasa las rebanadas por huevo batido. 4. Fríe en aceite caliente hasta dorar. 5. Espolvorea con azúcar y canela o baña con miel.",
     "calorias_aprox": 280
   },
@@ -303,7 +303,7 @@
     "tiempo_minutos": 25,
     "porciones": 4,
     "tipo_comida": ["postre"],
-    "dieta": ["vegetariano", "sin_gluten"],
+    "dieta": ["vegetariana", "sin gluten"],
     "instrucciones": "1. Hierve la leche con canela y vainilla. 2. Bate las yemas con azúcar y maicena. 3. Incorpora la leche caliente poco a poco. 4. Cocina a fuego lento sin parar de remover hasta que espese. 5. Deja enfriar y refrigera.",
     "calorias_aprox": 180
   },
@@ -317,7 +317,7 @@
     "tiempo_minutos": 35,
     "porciones": 4,
     "tipo_comida": ["almuerzo", "cena"],
-    "dieta": ["sin_gluten"],
+    "dieta": ["sin gluten"],
     "instrucciones": "1. Corta el pollo en trozos y salpimenta. 2. Dora el pollo en aceite de oliva. 3. Retira y sofríe los ajos laminados. 4. Devuelve el pollo a la sartén, añade vino blanco y deja reducir. 5. Espolvorea con perejil picado antes de servir.",
     "calorias_aprox": 320
   },
@@ -331,7 +331,7 @@
     "tiempo_minutos": 10,
     "porciones": 2,
     "tipo_comida": ["desayuno", "cena"],
-    "dieta": ["vegano", "vegetariano"],
+    "dieta": ["vegana", "vegetariana"],
     "instrucciones": "1. Tuesta el pan. 2. Frota con medio diente de ajo. 3. Ralla el tomate maduro sobre el pan. 4. Añade un chorrito de aceite de oliva virgen extra. 5. Espolvorea con sal al gusto.",
     "calorias_aprox": 180
   },
@@ -345,7 +345,7 @@
     "tiempo_minutos": 40,
     "porciones": 4,
     "tipo_comida": ["desayuno", "postre"],
-    "dieta": ["vegetariano"],
+    "dieta": ["vegetariana"],
     "instrucciones": "1. Hierve agua con sal y añade la harina de golpe. 2. Mezcla hasta formar una masa. 3. Forma los churros con manga pastelera. 4. Fríe en aceite caliente. 5. Para el chocolate: calienta leche con chocolate, azúcar y maicena hasta espesar.",
     "calorias_aprox": 420
   },
@@ -359,7 +359,7 @@
     "tiempo_minutos": 30,
     "porciones": 4,
     "tipo_comida": ["almuerzo", "cena"],
-    "dieta": ["sin_gluten"],
+    "dieta": ["sin gluten"],
     "instrucciones": "1. Enharina ligeramente la merluza y dórala en aceite. 2. Retira y sofríe ajo picado. 3. Añade harina, caldo de pescado y perejil picado. 4. Incorpora la merluza, guisantes y almejas. 5. Cocina moviendo la cazuela hasta que espese la salsa.",
     "calorias_aprox": 280
   },
@@ -387,7 +387,7 @@
     "tiempo_minutos": 10,
     "porciones": 4,
     "tipo_comida": ["almuerzo", "cena", "tapa"],
-    "dieta": ["vegano", "vegetariano", "sin_gluten"],
+    "dieta": ["vegana", "vegetariana", "sin gluten"],
     "instrucciones": "1. Lava y seca bien los pimientos. 2. Calienta abundante aceite de oliva en una sartén. 3. Fríe los pimientos a fuego alto, moviéndolos constantemente. 4. Cuando la piel esté tostada, retira y escurre. 5. Espolvorea con sal gorda y sirve inmediatamente.",
     "calorias_aprox": 90
   },
@@ -401,7 +401,7 @@
     "tiempo_minutos": 30,
     "porciones": 4,
     "tipo_comida": ["almuerzo", "cena"],
-    "dieta": ["vegano", "vegetariano", "sin_gluten"],
+    "dieta": ["vegana", "vegetariana", "sin gluten"],
     "instrucciones": "1. Sofríe ajo picado en aceite de oliva. 2. Añade pimentón y comino. 3. Incorpora las espinacas y cocina hasta que reduzcan. 4. Añade los garbanzos cocidos y mezcla bien. 5. Ajusta de sal y añade un chorrito de vinagre antes de servir.",
     "calorias_aprox": 220
   }

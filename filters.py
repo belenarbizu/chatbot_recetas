@@ -1,18 +1,18 @@
 DIET = {
-    "vegana": "vegano",
-    "vegano": "vegano",
-    "vegetariana": "vegetariano",
-    "vegetariano": "vegetariano",
-    "sin gluten": "sin_gluten",
-    "no gluten": "sin_gluten",
-    "no tolero el gluten": "sin_gluten",
-    "no como gluten": "sin_gluten",
-    "no como carne": "vegetariano",
-    "no como pescado": "vegetariano",
-    "no como marisco": "vegetariano",
-    "sin carne": "vegetariano",
-    "sin pescado": "vegetariano",
-    "sin marisco": "vegetariano"
+    "vegana": "vegana",
+    "vegano": "vegana",
+    "vegetariana": "vegetariana",
+    "vegetariano": "vegetariana",
+    "sin gluten": "sin gluten",
+    "no gluten": "sin gluten",
+    "no tolero el gluten": "sin gluten",
+    "no como gluten": "sin gluten",
+    "no como carne": "vegetariana",
+    "no como pescado": "vegetariana",
+    "no como marisco": "vegetariana",
+    "sin carne": "vegetariana",
+    "sin pescado": "vegetariana",
+    "sin marisco": "vegetariana"
 }
 
 TYPE_FOOD = {
