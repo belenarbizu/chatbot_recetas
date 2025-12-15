@@ -1,5 +1,6 @@
 from filters import DIET, TYPE_FOOD, DIFFICULTY, TIME
 
+
 def get_all_ingredients(recipes):
     ingredients_set = set()
     for recipe in recipes:

@@ -2,7 +2,6 @@ import pickle
 import json
 import random
 from match_recipe import (
-    get_all_ingredients,
     get_diet_from_text,
     get_ingredients_from_text,
     get_difficulty_from_text,
@@ -12,8 +11,10 @@ from match_recipe import (
 )
 from logger import Logger
 from context import Context
+from recipe_cache import get_recipes_cached, get_all_ingredients_cached
 
 logger = Logger()
+
 
 def load_model():
     try:
@@ -39,14 +40,14 @@ def open_intentions_file():
         return None
 
 
-def open_recipes_file():
-    try:
-        with open('data/recetas.json', 'r', encoding='utf-8') as file:
-            data = json.load(file)
-            return data
-    except FileNotFoundError:
-        print("The file recetas.json was not found.")
-        return None
+# def open_recipes_file():
+#     try:
+#         with open('data/recetas.json', 'r', encoding='utf-8') as file:
+#             data = json.load(file)
+#             return data
+#     except FileNotFoundError:
+#         print("The file recetas.json was not found.")
+#         return None
 
 
 def get_info_from_user_input(text, ingredients):
@@ -60,7 +61,7 @@ def get_info_from_user_input(text, ingredients):
 
 def predict(model, tfidf_vectorizer, encoder, text, context=None):
     data = open_intentions_file()
-    recipes = open_recipes_file()
+    recipes = get_recipes_cached()
     if not data or not recipes:
         exit(1)
     
@@ -100,7 +101,7 @@ def predict(model, tfidf_vectorizer, encoder, text, context=None):
 
     for intent in data['intents']:
         if tag == "buscar_receta":
-            ingredients = get_all_ingredients(recipes)
+            ingredients = get_all_ingredients_cached()
             text_ingredients, type_food, difficulty, time, diet = get_info_from_user_input(text, ingredients)
             if text_ingredients:
                 context.add_ingredients(text_ingredients)
@@ -149,7 +150,7 @@ def main():
     if not model:
         exit(1)
     user_input = input("Enter your message: ")
-    response, _, _ = predict(model, tfidf_vectorizer, encoder, user_input)
+    response, _, _, _ = predict(model, tfidf_vectorizer, encoder, user_input)
     if response:
         print(f"The predicted response is: {response}")
 
