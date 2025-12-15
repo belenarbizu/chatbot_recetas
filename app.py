@@ -87,7 +87,7 @@ def main():
     def reset_context():
         nonlocal context
         context.reset()
-        return None, "Contexto reiniciado."
+        return [], []
 
 
     def show_context():
@@ -108,7 +108,7 @@ def main():
         
         gr.Markdown("<h1 style='text-align: center; font-size: 22px;'>🍳 Chatbot de Recetas</h1>")
 
-        gr.ChatInterface(
+        chat = gr.ChatInterface(
             chatbot_response,
             chatbot=chatbot,
             title=None,
@@ -135,7 +135,7 @@ def main():
         info_output = gr.Textbox(label="Información", lines=4)
 
         stats_button.click(fn=show_statistics, inputs=None, outputs=info_output)
-        reset_button.click(fn=reset_context, inputs=None, outputs=[chatbot, info_output])
+        reset_button.click(fn=reset_context, inputs=None, outputs=[chatbot, chat.chatbot_state])
         context_button.click(fn=show_context, inputs=None, outputs=info_output)
 
     demo.launch(theme=gr.themes.Soft())
