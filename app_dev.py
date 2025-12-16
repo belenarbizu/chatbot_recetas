@@ -33,6 +33,16 @@ def main():
         print(f"Error loading the model: {e}")
         return
 
+
+    def join_reasons(reasons):
+        if len(reasons) == 1:
+            return reasons[0]
+        elif len(reasons) == 2:
+            return ' y '.join(reasons)
+        else:
+            return ', '.join(reasons[:-1]) + ' y ' + reasons[-1]
+
+
     def chatbot_response(user_input, history):
         nonlocal context
         try:
@@ -53,7 +63,9 @@ def main():
 
             reasons = []
             if context.user_ingredients:
-                reasons.append(f"porque coincide con los ingredientes que tienes: {', '.join(context.user_ingredients)}")
+                matching_ingredients = [ing for ing in response['ingredientes'] if ing in context.user_ingredients]
+                if matching_ingredients:
+                    reasons.append(f"porque coincide con los ingredientes que tienes: {join_reasons(matching_ingredients)}")
             if context.diet:
                 reasons.append(f"porque es apta para la dieta {context.diet}")
             if context.type_food:
@@ -64,8 +76,8 @@ def main():
                 reasons.append(f"porque se puede preparar en {context.time} minutos o menos")
             
             if reasons:
-                phrase += f"\n\nTe la recomiendo {', '.join(reasons)}."
-
+                phrase += f"\n\nTe la recomiendo {join_reasons(reasons)}."
+    
             phrase += f"\n\n📝 Ingredientes:\n" + ", ".join([f"{ing}" for ing in response['ingredientes']])
             phrase += f"\n\n📌 Instrucciones:\n" + f"{response['instrucciones']}"
             phrase += f"\n\n📊 Información:"
@@ -73,7 +85,7 @@ def main():
             phrase += f"\n• Tiempo: {response['tiempo_minutos']} minutos"
             phrase += f"\n• Dificultad: {response['dificultad'].capitalize()}"
             if response.get('dieta'):
-                phrase += f"\n• Dieta: {', '.join(response['dieta'])}"
+                phrase += f"\n• Dieta: {join_reasons(response['dieta'])}"
             return phrase
         else:
             return response

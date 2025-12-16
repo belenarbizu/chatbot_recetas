@@ -40,16 +40,6 @@ def open_intentions_file():
         return None
 
 
-# def open_recipes_file():
-#     try:
-#         with open('data/recetas.json', 'r', encoding='utf-8') as file:
-#             data = json.load(file)
-#             return data
-#     except FileNotFoundError:
-#         print("The file recetas.json was not found.")
-#         return None
-
-
 def get_info_from_user_input(text, ingredients):
     ingredients = get_ingredients_from_text(text, ingredients)
     type_food = get_type_food_from_text(text)
@@ -122,12 +112,12 @@ def predict(model, tfidf_vectorizer, encoder, text, context=None):
             if len(best_recipes) > 1:
                 context.set_last_intent("multiple_options")
                 context.add_recipes(best_recipes)
-                respone = "He encontrado varias recetas que podrían interesarte:\n"
+                response = "He encontrado varias recetas que podrían interesarte:\n"
                 for idx, recipe in enumerate(best_recipes):
-                    respone += f"{idx+1}. {recipe['nombre']}\n"
-                respone += "\n Dime el número o el nombre de la receta que te gustaría conocer."
-                logger.log_interaction(text, respone, max_probability)
-                return respone, False, max_probability, context
+                    response += f"{idx+1}. {recipe['nombre']}\n"
+                response += "\n Dime el número o el nombre de la receta que te gustaría conocer."
+                logger.log_interaction(text, response, max_probability)
+                return response, False, max_probability, context
             else:
                 recipe = random.choice(best_recipes)
                 recipe_info = best_recipes_info[best_recipes.index(recipe)]
