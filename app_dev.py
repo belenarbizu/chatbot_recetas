@@ -2,6 +2,7 @@ import gradio as gr
 import pickle
 from chatbot_predict import predict
 import random
+from logger import Logger
 from context import Context
 
 THRESHOLD = 0.45
@@ -19,6 +20,7 @@ custom_css = """
 """
 
 def main():
+    logger = Logger()
     context = Context()
 
     try:
@@ -77,10 +79,39 @@ def main():
             return response
 
 
+    def show_statistics():
+        stats = logger.get_statistics()
+        if stats:
+            stats_text = f"Total de interacciones: {stats['total_interactions']}\n"
+            stats_text += f"Confianza promedio: {stats['avg_confidence']:.2f}\n"
+            stats_text += "Ingredientes más buscados:\n"
+            for ingredient, count in sorted(stats['most_searched_ingredients'].items(), key=lambda x: x[1], reverse=True):
+                stats_text += f"{ingredient}: {count}\n"
+            stats_text += "Dietas más buscadas:\n"
+            for diet, count in sorted(stats['most_searched_diets'].items(), key=lambda x: x[1], reverse=True):
+                stats_text += f"{diet}: {count}\n"
+            return stats_text
+        else:
+            return "No se pudieron obtener las estadísticas."
+
+
     def reset_context():
         nonlocal context
         context.reset()
         return [], []
+
+
+    def show_context():
+        nonlocal context
+        summary = context.get_context_summary()
+        context_text = "Contexto actual:\n"
+        context_text += f"Ingredientes: {', '.join(summary['ingredients']) if summary['ingredients'] else 'Ninguno'}\n"
+        context_text += f"Dieta: {summary['diet'] if summary['diet'] else 'Ninguna'}\n"
+        context_text += f"Tipo de comida: {summary['type_food'] if summary['type_food'] else 'Ninguno'}\n"
+        context_text += f"Dificultad: {summary['difficulty'] if summary['difficulty'] else 'Ninguna'}\n"
+        context_text += f"Tiempo: {summary['time'] if summary['time'] else 'Ninguno'} minutos\n"
+        context_text += f"Últimas recetas sugeridas: {len(summary['last_recipes'])}\n"
+        return context_text
 
 
     with gr.Blocks() as demo:
@@ -108,9 +139,15 @@ def main():
             ])
 
         with gr.Row():
+            stats_button = gr.Button("Ver estadísticas de interacciones", size="sm")
             reset_button = gr.Button("Reiniciar conversación", size="sm")
+            context_button = gr.Button("Ver contexto actual", size="sm")
+        
+        info_output = gr.Textbox(label="Información", lines=4)
 
+        stats_button.click(fn=show_statistics, inputs=None, outputs=info_output)
         reset_button.click(fn=reset_context, inputs=None, outputs=[chatbot, chat.chatbot_state])
+        context_button.click(fn=show_context, inputs=None, outputs=info_output)
 
     demo.launch(theme=gr.themes.Soft(), css=custom_css)
 
