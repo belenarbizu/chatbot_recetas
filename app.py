@@ -1,12 +1,23 @@
 import gradio as gr
 import pickle
 from chatbot_predict import predict
-import json
 import random
 from logger import Logger
 from context import Context
 
 THRESHOLD = 0.45
+
+custom_css = """
+.avatar-container img {
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.avatar-container {
+    width: 40px !important;
+    height: 40px !important;
+}
+"""
 
 def main():
     logger = Logger()
@@ -104,7 +115,7 @@ def main():
 
 
     with gr.Blocks() as demo:
-        chatbot = gr.Chatbot(height=500)
+        chatbot = gr.Chatbot(height=500, avatar_images=[None, "chatbot_avatar.jpg"])
         
         gr.Markdown("<h1 style='text-align: center; font-size: 22px;'>🍳 Chatbot de Recetas</h1>")
 
@@ -138,7 +149,7 @@ def main():
         reset_button.click(fn=reset_context, inputs=None, outputs=[chatbot, chat.chatbot_state])
         context_button.click(fn=show_context, inputs=None, outputs=info_output)
 
-    demo.launch(theme=gr.themes.Soft())
+    demo.launch(theme=gr.themes.Soft(), css=custom_css)
 
 
 if __name__ == "__main__":
